@@ -1,6 +1,4 @@
 #include "Zwierze.h"
 
-Zwierze::Zwierze(int sila, int inicjatywa, point polozenie) {
-    super(sila, inicjatywa, polozenie);
-    this->nazwa = "czlowiek";
-}
+Zwierze::Zwierze(int sila, int inicjatywa, Point polozenie) 
+: Organizm(sila, inicjatywa, polozenie) {}

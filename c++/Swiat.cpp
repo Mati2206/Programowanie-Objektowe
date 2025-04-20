@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Swiat.h"
+#include "Organizm.h"
+
 using namespace std;
 
 Swiat::Swiat(int x, int y) {
@@ -16,16 +18,9 @@ void Swiat::rysujSwiat() {
 
     for (int i = 0; i < this->x; i++) {
         for (int j = 0; j < this->y; j++) {
-            switch (board[i][j].nazwa) {
-
-                case "czlowiek":
-                    cout << 'c';
-                    break;
-                default:
-                    cout << ' ';
-                    break;
-            }
-            cout << '.';
+            string nazwa = board[i][j].nazwa;
+            if (nazwa == "czlowiek") cout << 'c';
+            else cout << '.';
         }
         cout << endl;
     }

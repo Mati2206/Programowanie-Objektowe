@@ -1,11 +1,14 @@
 #include <iostream>
-#include "Swiat.cpp"
-#include "Czlowiek.cpp"
+#include "Swiat.h"
+#include "Czlowiek.h"
 
 int main() {
     Swiat swiat = Swiat(20, 20);
 
-    Organizm czlowiek = Czlowiek(5, 4, Point(10, 10));
+    Point polozenie;
+    polozenie.x = 10;
+    polozenie.y = 10;
+    Organizm czlowiek = Czlowiek(5, 4, polozenie);
     swiat.organizmy.push_back(czlowiek);
 
     swiat.rysujSwiat();

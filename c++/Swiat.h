@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #include "Organizm.h"
+#include <vector>
 
 class Swiat {
 private:

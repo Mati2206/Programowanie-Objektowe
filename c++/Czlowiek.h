@@ -1,6 +1,7 @@
 #pragma once
 #include "Zwierze.h"
 
-class Czlowiek : Zwierze {
-    Zwierze(int sila, int inicjatywa, point polozenie)
+class Czlowiek : public Zwierze {
+public:
+    Czlowiek(int sila, int inicjatywa, Point polozenie); 
 };

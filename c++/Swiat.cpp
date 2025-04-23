@@ -7,35 +7,34 @@ using namespace std;
 Swiat::Swiat(int x, int y) {
     this->x = x;
     this->y = y;
+    this->plansza = new Organizm**[y];
+    for (int i = 0; i < y; i++) {
+        this->plansza[i] = new Organizm*[x];
+    }
 }
 
 void Swiat::rysujSwiat() {
-    Organizm* board[this->x][this->y] = {};
-
-    for (int i = 0; i < this->organizmy.size(); i++) {
-        Organizm* org = this->organizmy[i];
-        board[org->polozenie.y][org->polozenie.x] = org;
-    }
-
     for (int i = 0; i < this->x; i++) {
         for (int j = 0; j < this->y; j++) {
-            if (board[i][j] == nullptr) {
+            if (this->plansza[i][j] == nullptr) {
                 cout << '.';
                 continue;
             }
-            cout << *board[i][j];
+            cout << *this->plansza[i][j];
         }
         cout << endl;
     }
 }
 
 void Swiat::wykonajTure() {
-    for (int i = 0; i < this->organizmy.size(); i++) {
-        this->organizmy[i]->akcja();
-        for (int j = 0; j < this->organizmy.size(); j++) {
-            if (i != j && this->organizmy[i]->polozenie == this->organizmy[j]->polozenie) {
-                this->organizmy[i]->kolizja(this->organizmy[j]);
-            }
-        }
+    auto organizmy_kopia = this->organizmy;
+
+    for (Organizm* org : organizmy_kopia) {
+        org->akcja();
     }
+}
+
+void Swiat::dodajOrganizm(Organizm* org) {
+    this->organizmy.push_back(org);
+    this->plansza[org->polozenie.y][org->polozenie.x] = org;
 }

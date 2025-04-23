@@ -14,6 +14,8 @@ struct Point {
 class Swiat;
 
 class Organizm {
+protected:
+    Point nowePolozenie(Point oryginalnePolozenie);
 public:
     virtual char znak() const = 0;
     virtual Organizm* clone() const = 0;
@@ -24,6 +26,7 @@ public:
     Swiat* swiat;
     Organizm();
     Organizm(int sila, int inicjatywa, Point polozenie, Swiat* swiat);
+    Organizm(int sila, Point polozenie, Swiat* swiat);
 
     virtual void akcja() = 0;
     virtual void kolizja(Organizm* inny) = 0;

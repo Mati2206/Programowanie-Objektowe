@@ -1,26 +1,28 @@
-#include <conio.h>
+// #include <conio.h>
 #include "Czlowiek.h"
 
 Czlowiek::Czlowiek(Point polozenie, Swiat* swiat) : Zwierze(5, 4, polozenie, swiat) {}
 
 void Czlowiek::akcja(){
-    int key = _getch();
-    key = _getch();
+    int key;
+    std::cin>>key;
 
+    this->swiat->plansza[this->polozenie.y][this->polozenie.x] = nullptr;
     switch (key) {
-    case 72:
+    case 0:
         this->polozenie.y -= 1;
         break;
-    case 80:
+    case 1:
         this->polozenie.y += 1;
         break;
-    case 75:
+    case 2:
         this->polozenie.x -= 1;
         break;
-    case 77:
+    case 3:
         this->polozenie.x += 1;
         break;
     }
+    this->swiat->plansza[this->polozenie.y][this->polozenie.x] = this;
 }
 
 char Czlowiek::znak() const { return 'c'; }

@@ -3,5 +3,7 @@
 
 class Czlowiek : public Zwierze {
 public:
-    Czlowiek(int sila, int inicjatywa, Point polozenie); 
+    Czlowiek(Point polozenie); 
+    char znak() const override;
+    void akcja() override;
 };

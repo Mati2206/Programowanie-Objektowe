@@ -7,7 +7,7 @@ private:
     int x;
     int y;
 public:
-    std::vector<Organizm> organizmy;
+    std::vector<Organizm*> organizmy;
 
     Swiat(int x, int y);
     void wykonajTure();

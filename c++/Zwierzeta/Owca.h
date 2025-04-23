@@ -4,6 +4,6 @@
 class Owca : public Zwierze {
 public:
     Owca(Point polozenie, Swiat* swiat); 
-    char znak() const override;
+    char rysowanie() const override;
     Organizm* clone() const override;
 };

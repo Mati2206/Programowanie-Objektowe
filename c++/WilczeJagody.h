@@ -3,6 +3,6 @@
 class WilczeJagody : Roslina {
 public:
     WilczeJagody(Point polozenie, Swiat*);
-    char znak() const override;
+    char rysowanie() const override;
     void kolizja(Organizm* inny) override;
 };

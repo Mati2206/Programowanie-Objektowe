@@ -3,7 +3,7 @@
 
 WilczeJagody::WilczeJagody(Point pozycja, Swiat* swiat) : Roslina(99, pozycja, swiat) {}
 
-char WilczeJagody::znak() const { return 't'; }
+char WilczeJagody::rysowanie() const { return 't'; }
 
 void WilczeJagody::kolizja(Organizm* inny) {
     auto it = std::find(swiat->organizmy.begin(), swiat->organizmy.end(), inny);

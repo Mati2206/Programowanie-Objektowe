@@ -3,6 +3,6 @@
 class Mlecz : Roslina {
 public:
     Mlecz(Point polozenie, Swiat*);
-    char znak() const override;
+    char rysowanie() const override;
     void akcja() override;
 };

@@ -25,11 +25,11 @@ int main() {
         return a->inicjatywa > b->inicjatywa;
     });
 
-    char znak;
+    char rysowanie;
     while (true) {
-        swiat.rysujSwiat();
+        swiat.rysowanieSwiat();
         swiat.wykonajTure();
     }
-    swiat.rysujSwiat();
+    swiat.rysowanieSwiat();
     return 0;
 }

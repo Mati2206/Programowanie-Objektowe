@@ -5,6 +5,7 @@ Zwierze::Zwierze(int sila, int inicjatywa, Point polozenie, Swiat* swiat)
 
 void Zwierze::akcja() {
     this->swiat->plansza[this->polozenie.y][this->polozenie.x] = nullptr;
+    this->wczesniejszePolozenie = this->polozenie;
     this->polozenie = this->nowePolozenie(this->polozenie);
     if (this->swiat->plansza[this->polozenie.y][this->polozenie.x] != nullptr) {
         this->swiat->plansza[this->polozenie.y][this->polozenie.x]->kolizja(this);

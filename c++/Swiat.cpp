@@ -13,7 +13,7 @@ Swiat::Swiat(int x, int y) {
     }
 }
 
-void Swiat::rysujSwiat() {
+void Swiat::rysowanieSwiat() {
     for (int i = 0; i < this->x; i++) {
         for (int j = 0; j < this->y; j++) {
             if (this->plansza[i][j] == nullptr) {

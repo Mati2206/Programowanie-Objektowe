@@ -4,7 +4,7 @@
 class Lis : public Zwierze {
 public:
     Lis(Point polozenie, Swiat* swiat); 
-    char znak() const override;
+    char rysowanie() const override;
     Organizm* clone() const override;
     void akcja() override;
 };

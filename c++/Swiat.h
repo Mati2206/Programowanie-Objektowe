@@ -15,5 +15,5 @@ public:
     void dodajOrganizm(Organizm* org);
     Swiat(int x, int y);
     void wykonajTure();
-    void rysujSwiat();
+    void rysowanieSwiat();
 };

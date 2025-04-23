@@ -4,6 +4,8 @@
 class Antylopa : public Zwierze {
 public:
     Antylopa(Point polozenie, Swiat* swiat); 
-    char znak() const override;
+    char rysowanie() const override;
     Organizm* clone() const override;
+    void akcja() override;
+    void kolizja(Organizm* inny) override;
 };

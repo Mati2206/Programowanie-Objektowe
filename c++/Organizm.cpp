@@ -2,56 +2,50 @@
 #include "Organizm.h"
 
 Organizm::Organizm(int sila, int inicjatywa, Point polozenie, Swiat* swiat) 
-: sila(sila), inicjatywa(inicjatywa), polozenie(polozenie), swiat(swiat) {}
+: sila(sila), inicjatywa(inicjatywa), polozenie(polozenie), wczesniejszePolozenie(polozenie), swiat(swiat) {}
 
-Organizm::Organizm(int sila, Point polozenie, Swiat* swiat) 
-: sila(sila), polozenie(polozenie), swiat(swiat) {}
-
-Organizm::Organizm() 
-: sila(0), inicjatywa(0), polozenie(0, 0) {}
-
-Point Organizm::nowePolozenie(Point orginalnePolozenie) {
+Point Organizm::nowePolozenie(Point orginalnePolozenie, int ile=1) {
     Point nowePolozenie = orginalnePolozenie;
         int r = rand() % 8;
         switch (r) {
         case 0:
-            nowePolozenie.y -= 1;
+            nowePolozenie.y -= ile;
             break;
         case 1:
-            nowePolozenie.x += 1;
+            nowePolozenie.x += ile;
             break;
         case 2: 
-            nowePolozenie.y += 1;
+            nowePolozenie.y += ile;
             break;
         case 3: 
-            nowePolozenie.x -= 1;
+            nowePolozenie.x -= ile;
             break;
         case 4:
-            nowePolozenie.y -= 1;
-            nowePolozenie.x -= 1;
+            nowePolozenie.y -= ile;
+            nowePolozenie.x -= ile;
             break;
         case 5:
-            nowePolozenie.y -= 1;
-            nowePolozenie.x += 1;
+            nowePolozenie.y -= ile;
+            nowePolozenie.x += ile;
             break;
         case 6:
-            nowePolozenie.y += 1;
-            nowePolozenie.x += 1;
+            nowePolozenie.y += ile;
+            nowePolozenie.x += ile;
             break;
         case 7:
-            nowePolozenie.y += 1;
-            nowePolozenie.x -= 1;
+            nowePolozenie.y += ile;
+            nowePolozenie.x -= ile;
             break;
         }
     return nowePolozenie;
 }
 
 std::ostream& operator<<(std::ostream& os, const Organizm& organizm) {
-    os << organizm.znak();
+    os << organizm.rysowanie();
     return os;
 }
 
 bool operator==(const Organizm& lhs, const Organizm& rhs) {
-    return lhs.znak() == rhs.znak();
+    return lhs.rysowanie() == rhs.rysowanie();
 }
 

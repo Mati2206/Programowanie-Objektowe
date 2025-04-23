@@ -25,7 +25,7 @@ void Czlowiek::akcja(){
     this->swiat->plansza[this->polozenie.y][this->polozenie.x] = this;
 }
 
-char Czlowiek::znak() const { return 'c'; }
+char Czlowiek::rysowanie() const { return 'c'; }
 
 Organizm* Czlowiek::clone() const {
     return new Czlowiek(*this);

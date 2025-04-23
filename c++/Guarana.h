@@ -4,6 +4,6 @@
 class Guarana : Roslina {
 public:
     Guarana(Point polozenie, Swiat* swiat);
-    char znak() const override;
+    char rysowanie() const override;
     void kolizja(Organizm* inny) override;
 };

@@ -15,18 +15,17 @@ class Swiat;
 
 class Organizm {
 protected:
-    Point nowePolozenie(Point oryginalnePolozenie);
+    Point nowePolozenie(Point oryginalnePolozenie, int ile=1);
 public:
-    virtual char znak() const = 0;
+    virtual char rysowanie() const = 0;
     virtual Organizm* clone() const = 0;
 
     int sila;
     int inicjatywa;
+    Point wczesniejszePolozenie;
     Point polozenie;
     Swiat* swiat;
-    Organizm();
     Organizm(int sila, int inicjatywa, Point polozenie, Swiat* swiat);
-    Organizm(int sila, Point polozenie, Swiat* swiat);
 
     virtual void akcja() = 0;
     virtual void kolizja(Organizm* inny) = 0;

@@ -3,5 +3,5 @@
 class Trawa : Roslina {
 public:
     Trawa(Point polozenie, Swiat*);
-    char znak() const override;
+    char rysowanie() const override;
 };

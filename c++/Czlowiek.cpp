@@ -1,7 +1,7 @@
 #include <conio.h>
 #include "Czlowiek.h"
 
-Czlowiek::Czlowiek(Point polozenie) : Zwierze(5, 4, polozenie) {}
+Czlowiek::Czlowiek(Point polozenie, Swiat* swiat) : Zwierze(5, 4, polozenie, swiat) {}
 
 void Czlowiek::akcja(){
     int key = _getch();
@@ -24,3 +24,7 @@ void Czlowiek::akcja(){
 }
 
 char Czlowiek::znak() const { return 'c'; }
+
+Organizm* Czlowiek::clone() const {
+    return new Czlowiek(*this);
+}

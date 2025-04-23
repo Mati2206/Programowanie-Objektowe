@@ -32,5 +32,10 @@ void Swiat::rysujSwiat() {
 void Swiat::wykonajTure() {
     for (int i = 0; i < this->organizmy.size(); i++) {
         this->organizmy[i]->akcja();
+        for (int j = 0; j < this->organizmy.size(); j++) {
+            if (i != j && this->organizmy[i]->polozenie == this->organizmy[j]->polozenie) {
+                this->organizmy[i]->kolizja(this->organizmy[j]);
+            }
+        }
     }
 }

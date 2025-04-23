@@ -1,8 +1,7 @@
 #include "Zwierze.h"
 
-Zwierze::Zwierze(int sila, int inicjatywa, Point polozenie) 
-: Organizm(sila, inicjatywa, polozenie) {}
-
+Zwierze::Zwierze(int sila, int inicjatywa, Point polozenie, Swiat* swiat) 
+: Organizm(sila, inicjatywa, polozenie, swiat) {}
 
 void Zwierze::akcja() {
     int gdzie = rand() % 4;
@@ -24,6 +23,31 @@ void Zwierze::akcja() {
     }
 }
 
-void Zwierze::kolizja() {
-    
+char Zwierze::znak() const { return 'z';}
+
+void Zwierze::kolizja(Organizm* inny) {
+    std::cout << "ELOO" << std::endl;
+    if (*this == *inny) {
+        Point nowePolozenie = this->polozenie;
+        int r = rand() % 4;
+        switch (r) {
+        case 0:
+            nowePolozenie.y -= 1;
+            break;
+        case 1:
+            nowePolozenie.x += 1;
+            break;
+        case 2: 
+            nowePolozenie.y += 1;
+            break;
+        case 3: 
+            nowePolozenie.x -= 1;
+            break;
+        }
+
+        std::cout << "siemano" << std::endl;
+        Organizm* potomek = this->clone();
+        potomek->polozenie = nowePolozenie;
+        swiat->organizmy.push_back(potomek);
+    }
 }

@@ -2,6 +2,8 @@
 #include "Organizm.h"
 #include <vector>
 
+class Organizm;
+
 class Swiat {
 private:
     int x;

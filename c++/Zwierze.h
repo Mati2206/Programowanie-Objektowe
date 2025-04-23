@@ -3,7 +3,8 @@
 
 class Zwierze : public Organizm {
 protected:
-    Zwierze(int sila, int inicjatywa, Point polozenie);
+    char znak() const override; 
+    Zwierze(int sila, int inicjatywa, Point polozenie, Swiat* swiat);
     void akcja() override;
-    void kolizja() override;
+    void kolizja(Organizm* inny) override;
 };

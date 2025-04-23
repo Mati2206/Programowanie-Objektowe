@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Organizm.h"
 
-Organizm::Organizm(int sila, int inicjatywa, Point polozenie) 
-: sila(sila), inicjatywa(inicjatywa), polozenie(polozenie) {}
+Organizm::Organizm(int sila, int inicjatywa, Point polozenie, Swiat* swiat) 
+: sila(sila), inicjatywa(inicjatywa), polozenie(polozenie), swiat(swiat) {}
 
 Organizm::Organizm() 
 : sila(0), inicjatywa(0), polozenie(0, 0) {}
@@ -15,3 +15,4 @@ std::ostream& operator<<(std::ostream& os, const Organizm& organizm) {
 bool operator==(const Organizm& lhs, const Organizm& rhs) {
     return lhs.znak() == rhs.znak();
 }
+

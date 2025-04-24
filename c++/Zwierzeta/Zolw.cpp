@@ -17,5 +17,7 @@ void Zolw::akcja() {
 
 void Zolw::kolizja(Organizm* inny) {
     Zwierze::kolizja(inny);
-    if (inny->sila < 5) inny->polozenie = inny->wczesniejszePolozenie;
+    if (inny->getSila() < 5) {
+        inny->setPolozenie(inny->getWczesniejszePolozenie());
+    }
 }

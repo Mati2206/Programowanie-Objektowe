@@ -81,6 +81,11 @@ void Organizm::setPolozenie(Point newPolozenie) {
     polozenie = newPolozenie;
 }
 
+void Organizm::setPolozenie(int x, int y) { 
+    polozenie.x = x;
+    polozenie.y = y;
+}
+
 void Organizm::setSwiat(Swiat* newSwiat) {
     swiat = newSwiat;
 }

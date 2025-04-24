@@ -9,8 +9,8 @@ Czlowiek::Czlowiek(Point polozenie, Swiat* swiat) : Zwierze(5, 4, polozenie, swi
 }
 
 void Czlowiek::akcja() {
-    this->swiat->plansza[this->polozenie.y][this->polozenie.x] = nullptr;
-    this->wczesniejszePolozenie = this->polozenie;
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), nullptr);
+    this->setWczesniejszePolozenie(this->getPolozenie());
     int key = _getch();
     if (key == 224 || key == 0) {
         key = _getch();
@@ -57,11 +57,11 @@ void Czlowiek::akcja() {
     }
 
     this->polozenie = this->odbij(this->polozenie);
-    Organizm* organizmNaPlanszy = this->swiat->plansza[this->polozenie.y][this->polozenie.x];
+    Organizm* organizmNaPlanszy = this->getSwiat()->getOrganizmNaPlanszy(this->getPolozenie());
     if (organizmNaPlanszy != nullptr) {
         organizmNaPlanszy->kolizja(this);
     }
-    this->swiat->plansza[this->polozenie.y][this->polozenie.x] = this;
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), this);
 }
 
 char Czlowiek::rysowanie() const { return 'C'; }

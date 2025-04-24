@@ -85,6 +85,10 @@ Organizm* Swiat::getOrganizmNaPlanszy(int x, int y) const {
     }
 }
 
+Organizm* Swiat::getOrganizmNaPlanszy(Point punkt) const {
+    return Swiat::getOrganizmNaPlanszy(punkt.x, punkt.y);
+}
+
 const std::vector<Organizm*>& Swiat::getOrganizmy() const {
     return this->organizmy;
 }
@@ -101,7 +105,9 @@ void Swiat::setTura(int tura) {
     this->tura = tura;
 }
 
-void Swiat::setOrganizmNaPlanszy(int x, int y, Organizm* organizm) {
+void Swiat::setOrganizmNaPlanszy(Point punkt, Organizm* organizm) {
+    int x = punkt.x;
+    int y = punkt.y;
     if (x >= 0 && x < this->x && y >= 0 && y < this->y) {
         this->plansza[y][x] = organizm;
         if (organizm != nullptr) {
@@ -111,6 +117,7 @@ void Swiat::setOrganizmNaPlanszy(int x, int y, Organizm* organizm) {
         cout << "Nieprawidłowe współrzędne (" << x << ", " << y << ")!" << endl;
     }
 }
+
 
 void Swiat::setOrganizmy(const std::vector<Organizm*>& organizmy) {
     this->organizmy = organizmy;

@@ -10,37 +10,40 @@ Organizm* Antylopa::clone() const {
 }
 
 void Antylopa::akcja() {
-    this->swiat->plansza[this->polozenie.y][this->polozenie.x] = nullptr;
-    this->polozenie = this->nowePolozenie(this->polozenie, 2);
-    Organizm* doKolizji = swiat->plansza[this->polozenie.y][this->polozenie.x];
-    swiat->plansza[this->polozenie.y][this->polozenie.x] = this;
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), nullptr);
+    this->setPolozenie(this->nowePolozenie(this->getPolozenie(), 2));
+    Organizm* doKolizji = this->getSwiat()->getOrganizmNaPlanszy(this->getPolozenie());
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), this);
     if (doKolizji != nullptr) {
         doKolizji->kolizja(this);
     }
 }
 
 void Antylopa::kolizja(Organizm* inny) {
-     Point p[8] = { 
+    Point p[8] = { 
         Point(-1, -1), Point(-1, 0), Point(-1, 1), 
         Point(0, -1),               Point(0, 1), 
         Point(1, -1), Point(1, 0), Point(1, 1) 
     };
     int r = rand() % 2;
-    bool flag = 0;
+    bool flag = false;
 
     if (r) {
-        this->swiat->plansza[this->polozenie.y][this->polozenie.x] = nullptr;
+        this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), nullptr);
         for (int i = 0; i < 8; i++) {
-            if (this->polozenie.y + p[i].y < 0 || this->polozenie.y + p[i].y >= this->swiat->y || 
-                this->polozenie.x + p[i].x < 0 || this->polozenie.x + p[i].x >= this->swiat->x) {
+            int newY = this->getPolozenie().y + p[i].y;
+            int newX = this->getPolozenie().x + p[i].x;
+            if (newY < 0 || newY >= this->getSwiat()->getY() || 
+                newX < 0 || newX >= this->getSwiat()->getX()) {
                 continue;
             }
-            if (this->swiat->plansza[this->polozenie.y + p[i].y][this->polozenie.x + p[i].x] == nullptr) {
-                this->polozenie = this->nowePolozenie(this->polozenie);
-                flag = 1;
+            if (this->getSwiat()->getOrganizmNaPlanszy(newX, newY) == nullptr) {
+                this->setPolozenie(newX, newY);
+                flag = true;
+                break;
             }
         }
-        this->swiat->plansza[this->polozenie.y][this->polozenie.x] = this;
+        this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), this);
     }
     if (!flag) {
         Zwierze::kolizja(inny);

@@ -5,7 +5,7 @@ Mlecz::Mlecz(Point pozycja, Swiat* swiat) : Roslina(0, pozycja, swiat) {}
 char Mlecz::rysowanie() const { return 'M'; }
 
 void Mlecz::akcja() { 
-    this->swiat->plansza[this->polozenie.y][this->polozenie.x] = this;
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), this);
     for (int i = 0; i < 3; i++) {
         Roslina::akcja();
     }

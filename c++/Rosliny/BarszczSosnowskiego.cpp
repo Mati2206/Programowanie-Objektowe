@@ -11,20 +11,20 @@ void BarszczSosnowskiego::akcja() {
         Point(1, -1), Point(1, 0), Point(1, 1) 
     };
     for (int i = 0; i < 8; i++) {
-        Organizm* organizmNaPlanszy = this->swiat->plansza[this->polozenie.y + p[i].y][this->polozenie.x + p[i].x];
+        Organizm* organizmNaPlanszy = this->getSwiat()->getOrganizmNaPlanszy(this->getPolozenie().x + p[i].x, this->getPolozenie().y + p[i].y);
         if (organizmNaPlanszy != nullptr) {
-            this->swiat->plansza[this->polozenie.y + p[i].y][this->polozenie.x + p[i].x] = nullptr;
-            auto it = std::find(this->swiat->organizmy.begin(), this->swiat->organizmy.end(), organizmNaPlanszy);
+            this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), nullptr);
+            auto it = std::find(this->getSwiat()->organizmy.begin(), this->getSwiat()->organizmy.end(), organizmNaPlanszy);
             *it = nullptr;
         }
     }
 }
 
 void BarszczSosnowskiego::kolizja(Organizm* inny) {
-    this->swiat->plansza[inny->polozenie.y][inny->polozenie.x] = nullptr;
-    auto it = std::find(this->swiat->organizmy.begin(), this->swiat->organizmy.end(), inny);
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), nullptr);
+    auto it = std::find(this->getSwiat()->organizmy.begin(), this->getSwiat()->organizmy.end(), inny);
     *it = nullptr;
-    auto it2 = std::find(this->swiat->organizmy.begin(), this->swiat->organizmy.end(), this);
+    auto it2 = std::find(this->getSwiat()->organizmy.begin(), this->getSwiat()->organizmy.end(), this);
     *it2 = nullptr;
 }
 

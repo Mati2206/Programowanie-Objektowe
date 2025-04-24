@@ -5,11 +5,11 @@ Zwierze::Zwierze(int sila, int inicjatywa, Point polozenie, Swiat* swiat)
 : Organizm(sila, inicjatywa, polozenie, swiat) {}
 
 void Zwierze::akcja() {
-    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie().y, this->getPolozenie().x, nullptr);
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), nullptr);
     this->setWczesniejszePolozenie(this->getPolozenie());
     this->setPolozenie(this->nowePolozenie(this->getPolozenie()));
-    Organizm* doKolizji = this->getSwiat()->getOrganizmNaPlanszy(this->getPolozenie().y, this->getPolozenie().x);
-    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie().y, this->getPolozenie().x, this);
+    Organizm* doKolizji = this->getSwiat()->getOrganizmNaPlanszy(this->getPolozenie());
+    this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), this);
     if (doKolizji != nullptr) {
         doKolizji->kolizja(this);
     }
@@ -17,21 +17,21 @@ void Zwierze::akcja() {
 
 void Zwierze::kolizja(Organizm* inny) {
     if (*this == *inny) {
-        this->polozenie = this->wczesniejszePolozenie;
-        Point nowePolozenie = this->nowePolozenie(this->polozenie);
+        this->setPolozenie(this->getWczesniejszePolozenie());
+        Point nowePolozenie = this->nowePolozenie(this->getPolozenie());
         Organizm* potomek = this->clone();
-        potomek->polozenie = nowePolozenie;
-        this->swiat->dodajOrganizm(potomek);
+        potomek->setPolozenie(nowePolozenie);
+        this->getSwiat()->dodajOrganizm(potomek);
     }
     else {
-        if (this->sila >= inny->sila) {
-            this->swiat->plansza[this->polozenie.y][this->polozenie.x] = this;
-            auto it = std::find(this->swiat->organizmy.begin(), this->swiat->organizmy.end(), inny);
+        if (this->getSila() >= inny->getSila()) {
+            this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), this);
+            auto it = std::find(this->getSwiat()->organizmy.begin(), this->getSwiat()->organizmy.end(), inny);
             *it = nullptr;
         }
         else {
-            this->swiat->plansza[this->polozenie.y][this->polozenie.x] = inny;
-            auto it = std::find(this->swiat->organizmy.begin(), this->swiat->organizmy.end(), this);
+            this->getSwiat()->setOrganizmNaPlanszy(this->getPolozenie(), inny);
+            auto it = std::find(this->getSwiat()->organizmy.begin(), this->getSwiat()->organizmy.end(), this);
             *it = nullptr;
         }
     }

@@ -6,10 +6,10 @@ WilczeJagody::WilczeJagody(Point pozycja, Swiat* swiat) : Roslina(99, pozycja, s
 char WilczeJagody::rysowanie() const { return 'J'; }
 
 void WilczeJagody::kolizja(Organizm* inny) {
-    this->swiat->plansza[inny->polozenie.y][inny->polozenie.x] = nullptr;
-    auto it = std::find(swiat->organizmy.begin(), swiat->organizmy.end(), inny);
+    this->getSwiat()->setOrganizmNaPlanszy(inny->getPolozenie(), nullptr);
+    auto it = std::find(this->getSwiat()->organizmy.begin(), this->getSwiat()->organizmy.end(), inny);
     *it = nullptr; 
-    auto it2 = std::find(swiat->organizmy.begin(), swiat->organizmy.end(), this);
+    auto it2 = std::find(this->getSwiat()->organizmy.begin(), this->getSwiat()->organizmy.end(), this);
     *it2 = nullptr; 
 }
 

@@ -12,15 +12,17 @@ struct Point {
 };
 
 class Swiat;
+class Czlowiek;
 
 
 class Organizm {
 private:
     int sila;
     int inicjatywa;
-    Point wczesniejszePolozenie;
     Point polozenie;
+    Point wczesniejszePolozenie;
     Swiat* swiat;
+    friend class Czlowiek;
 
 protected:
     Point nowePolozenie(Point oryginalnePolozenie, int ile = 1);
@@ -44,6 +46,7 @@ public:
     void setInicjatywa(int newInicjatywa);
     void setWczesniejszePolozenie(Point newWczesniejszePolozenie);
     void setPolozenie(Point newPolozenie);
+    void setPolozenie(int x, int y);
     void setSwiat(Swiat* newSwiat);
 
     friend std::ostream& operator<<(std::ostream& os, const Organizm& organizm);

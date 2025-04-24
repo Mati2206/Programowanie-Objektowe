@@ -2,6 +2,7 @@
 #include "Organizm.h"
 #include <vector>
 
+struct Point;
 class Organizm;
 
 class Swiat {
@@ -10,9 +11,10 @@ private:
     int y;
     int tura;
     Organizm*** plansza;
-    std::vector<Organizm*> organizmy;
 
 public:
+    std::vector<Organizm*> organizmy;
+
     Swiat(int x, int y);
 
     int getX() const;
@@ -24,8 +26,9 @@ public:
     int getTura() const;
     void setTura(int tura);
 
+    Organizm* getOrganizmNaPlanszy(Point punkt) const;
     Organizm* getOrganizmNaPlanszy(int x, int y) const;
-    void setOrganizmNaPlanszy(int x, int y, Organizm* org);
+    void setOrganizmNaPlanszy(Point punkt, Organizm* org);
 
     const std::vector<Organizm*>& getOrganizmy() const;
     void setOrganizmy(const std::vector<Organizm*>& organizmy);

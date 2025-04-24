@@ -4,39 +4,35 @@
 Organizm::Organizm(int sila, int inicjatywa, Point polozenie, Swiat* swiat) 
 : sila(sila), inicjatywa(inicjatywa), polozenie(polozenie), wczesniejszePolozenie(polozenie), swiat(swiat) {}
 
-Point Organizm::nowePolozenie(Point orginalnePolozenie, int ile=1) {
+Point Organizm::odbij(Point polozenie){
+    if (polozenie.x < 0) polozenie.x = 0;
+    if (polozenie.x >= swiat->getX()) polozenie.x = swiat->getX() - 1;
+    if (polozenie.y < 0) polozenie.y = 0;
+    if (polozenie.y >= swiat->getY()) polozenie.y = swiat->getY() - 1;
+    return polozenie;
+}
+
+Point Organizm::nowePolozenie(Point orginalnePolozenie, int ile) {
     Point nowePolozenie = orginalnePolozenie;
         int r = rand() % 8;
-        switch (r) {
-        case 0:
-            nowePolozenie.y -= ile;
-            break;
-        case 1:
-            nowePolozenie.x += ile;
-            break;
-        case 2: 
-            nowePolozenie.y += ile;
-            break;
-        case 3: 
-            nowePolozenie.x -= ile;
-            break;
-        case 4:
-            nowePolozenie.y -= ile;
-            nowePolozenie.x -= ile;
-            break;
-        case 5:
-            nowePolozenie.y -= ile;
-            nowePolozenie.x += ile;
-            break;
-        case 6:
-            nowePolozenie.y += ile;
-            nowePolozenie.x += ile;
-            break;
-        case 7:
-            nowePolozenie.y += ile;
-            nowePolozenie.x -= ile;
-            break;
+        Point p[8] = {
+            Point(-1, -1), Point(-1, 0), Point(-1, 1), 
+            Point(0, -1),               Point(0, 1), 
+            Point(1, -1), Point(1, 0), Point(1, 1) 
+        };
+        for (int i = 0; i < ile; i++) {
+            if (r == 8) r = 0;
+            if (nowePolozenie.y + p[r].y >= 0 && nowePolozenie.y + p[r].y < swiat->getY() && 
+                nowePolozenie.x + p[r].x >= 0 && nowePolozenie.x + p[r].x < swiat->getX()) {
+                nowePolozenie.x += p[r].x;
+                nowePolozenie.y += p[r].y;
+                break;
+            }
+            r++;
         }
+
+        nowePolozenie = odbij(nowePolozenie);
+
     return nowePolozenie;
 }
 
@@ -49,3 +45,42 @@ bool operator==(const Organizm& lhs, const Organizm& rhs) {
     return lhs.rysowanie() == rhs.rysowanie();
 }
 
+int Organizm::getSila() const {
+    return sila;
+}
+
+int Organizm::getInicjatywa() const {
+    return inicjatywa;
+}
+
+Point Organizm::getWczesniejszePolozenie() const {
+    return wczesniejszePolozenie;
+}
+
+Point Organizm::getPolozenie() const {
+    return polozenie;
+}
+
+Swiat* Organizm::getSwiat() const {
+    return swiat;
+}
+
+void Organizm::setSila(int newSila) {
+    sila = newSila;
+}
+
+void Organizm::setInicjatywa(int newInicjatywa) {
+    inicjatywa = newInicjatywa;
+}
+
+void Organizm::setWczesniejszePolozenie(Point newWczesniejszePolozenie) {
+    wczesniejszePolozenie = newWczesniejszePolozenie;
+}
+
+void Organizm::setPolozenie(Point newPolozenie) {
+    polozenie = newPolozenie;
+}
+
+void Organizm::setSwiat(Swiat* newSwiat) {
+    swiat = newSwiat;
+}
